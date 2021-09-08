@@ -1,0 +1,28 @@
+<!-- To add the LoggingSOAPHandler to the JAX-WS handler chain using this binding file:
+     1. Client-side: add reference to binding file to wsimport:
+             wsimport -b config/logging_binding.xml ...
+             
+     2. Server-side: add @HandlerChain:
+             package com.ltree.crs577.services;
+             @WebService
+             @HandlerChain(file="logging_binding.xml") 
+             // file location: WEB-INF/classes/com/ltree/crs577/services/logging_binding.xml
+             public class MyService { ... } 
+-->
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxws:bindings wsdlLocation="http://localhost:8080/ex04/stock?wsdl" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+
+    <jaxws:bindings node="wsdl:definitions">
+        <handler-chains xmlns="http://java.sun.com/xml/ns/javaee">
+            <handler-chain>
+                <handler>
+                    <handler-name>LoggingSOAPHandler</handler-name>
+                    <handler-class>com.rf.portal.common.LoggingSOAPHandler</handler-class>
+                </handler>
+            </handler-chain>
+        </handler-chains>
+    </jaxws:bindings>    
+</jaxws:bindings>

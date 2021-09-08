@@ -1,0 +1,24 @@
+<project name="Ex05_catalog_soapclient" basedir="." default="build-client-catalog-service">
+    <property name="appname" value="${ant.project.name}" />
+
+    <import file="../build-common.xml" />
+    
+    <property name="wsimport.wsdl" 
+              value="http://localhost:8080/catalog/catalog?wsdl" />
+    
+    <property name="wsimport.package" 
+              value="com.rf.portal.catalogclient.generated" />    
+
+    <target name="build-client-catalog-service"
+            depends="common.wsimport"
+            description="Builds a SOAP Web service client for the Catalog service">
+    </target>
+    
+    <target name="debug" 
+            depends="common.debug" 
+            description="Dumps values of Ant properties">
+        <echo>$${wsimport.package} = ${wsimport.package}</echo>
+        <echo>$${wsimport.wsdl} = ${wsimport.wsdl}</echo>
+    </target>
+    
+</project>

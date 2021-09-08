@@ -1,0 +1,24 @@
+<project name="ex05_soapclient" basedir="." default="wsimport">
+    <property name="appname" value="${ant.project.name}" />
+
+    <import file="../build-common.xml" />
+    
+    <property name="wsimport.wsdl" 
+              value="http://localhost:8080/ex04_solution/stock?wsdl" />
+
+    <property name="wsimport.package" 
+              value="com.rf.portal.warehouseclient.generated" />
+    
+    <target name="wsimport" 
+            depends="common.wsimport"
+            description="Builds a SOAP Web service client">
+    </target>
+    
+    <target name="debug" 
+            depends="common.debug" 
+            description="Dumps values of Ant properties">
+        <echo>$${wsimport.package} = ${wsimport.package}</echo>
+        <echo>$${wsimport.wsdl} = ${wsimport.wsdl}</echo>
+    </target>
+    
+</project>

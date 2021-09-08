@@ -1,0 +1,81 @@
+<html>
+<body>
+
+<h2>Hints for Exercise 5.1</h2>
+
+<h3>StockWebServiceClient.java</h3>
+
+<pre><font color="grey">
+//TODO: import all classes in the package generated from the web service
+//      by wsimport </font><font color="blue">
+import com.rf.portal.warehouseclient.generated.*; </font><font color="grey">
+...
+
+    // TODO: create the proxy factory for the Stock service </font><font color="blue">
+    StockService stockProxyFactory = new StockService(); </font><font color="grey">
+
+    // TODO: use the proxy factory to create a Web service proxy </font><font color="blue">
+    Stock stockProxy = stockProxyFactory.getStockPort(); </font><font color="grey">
+
+    // TODO: use the service proxy to get all items with a quantity less than 2 </font><font color="blue">
+    StockListType inventoryLessThan = 
+            stockProxy.getStockItemsWithQuantityLessThan(2); </font><font color="grey">
+
+    // TODO: print the product ID and quantity of all items found in the previous step </font><font color="blue">
+    System.out.println("\nItems with quantity less than 2:");
+    for (ProductType item : inventoryLessThan.getProduct()){
+        System.out.println("\tFound " + item.getProductId() + " " + item.getQuantity());
+    } </font><font color="grey">
+
+    // TODO: use the service proxy to get all items with a quantity between 2 and 4 </font><font color="blue">
+    StockListType inventoryBetween = 
+            stockProxy.getStockItemsWithQuantityBetween(2, 4); </font><font color="grey">
+
+    // TODO: print the product ID and quantity of all items found in the previous step </font><font color="blue">
+    System.out.println("\nItems with quantity between 2 and 4:");
+    for (ProductType item : inventoryBetween.getProduct()){
+        System.out.println("\tFound " + item.getProductId() + " " + item.getQuantity());
+    } </font><font color="grey">
+
+    // TODO: use the service proxy to whether the item with product ID 3177 is in stock 
+    //       and print the result (it should be true) </font><font color="blue">
+    boolean isInStock1 = stockProxy.isInStock(3177);
+    System.out.println("\nItem 3177 is " + (isInStock1 ? "" : "not ") + "in stock"); </font><font color="grey">
+
+    // TODO: use the service proxy to whether the item with product ID 3502 is in stock 
+    //       and print the result (it should be false) </font><font color="blue">
+    boolean isInStock2 = stockProxy.isInStock(3502);
+    System.out.println("\nItem 3502 is " + (isInStock2 ? "" : "not ") + "in stock");
+</font></pre>
+
+<h3>BONUS</h3>
+
+<h3>CatalogServiceClient.java</h3>
+
+<pre><font color="grey">
+// TODO: import all classes in the package generated from the CatalogService
+//       by wsimport </font><font color="blue">
+import com.rf.portal.catalogclient.generated.*; </font><font color="grey">
+...
+
+    // TODO: Use the generated code to create a service factory for 
+    //       the web service proxy </font><font color="blue">
+    CatalogQueryService catalogQueryService = new CatalogQueryService(); </font><font color="grey">
+
+    // TODO: Use the service factory to create a web service proxy </font><font color="blue">
+    CatalogQuery converterQueryProxy = catalogQueryService.getCatalogQueryPort(); </font><font color="grey">
+
+    // TODO: Use the web service proxy to send a request to the web service
+    //       to find the catalog item with product id 3000 </font><font color="blue">
+    int productId = 3000;
+    CatalogItem result = converterQueryProxy.findCatalogItem(productId); </font><font color="grey">
+
+    // TODO: Print the item's product ID, title, artist, and price </font><font color="blue">
+    System.out.println("Catalog item ID: " + result.getProductId());
+    System.out.println("Catalog item title: " + result.getTitle());
+    System.out.println("Catalog item artist: " + result.getArtist());
+    System.out.println("Catalog item price: $" + result.getPrice());
+</font></pre>
+
+</body>
+</html>
